@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Prestadores - Conecta Comunidade</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <h2>Conecta Comunidade 🤝</h2>
+        </div>
+        <nav class="nav-links" id="nav-links">
+            <a href="/">História</a>
+            <a href="/mural">Mural de Ajudas</a>
+            <a href="/prestadores" class="active">Mapa de Prestadores</a>
+        </nav>
+        <div class="nav-actions" id="nav-actions"></div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <h2>Mapa Interativo de Prestadores & Voluntários</h2>
+            <p class="subtitle">Explore no mapa abaixo os voluntários e profissionais disponíveis na sua zona em São Paulo.</p>
+            
+            <div id="map"></div>
+
+            <h2>Prestadores Cadastrados</h2>
+            <div class="grid-prestadores" id="lista-prestadores">
+                <div class="card">
+                    <h3>João Silva</h3>
+                    <span class="badge">Eletricista & Manutenção</span>
+                    <p>Disponível para pequenos reparos comunitários nos finais de semana.</p>
+                    <small>📍 São Paulo (SP)</small>
+                    <button class="btn-sm btn-ajudar" style="margin-top: 12px;">Entrar em Contato</button>
+                </div>
+                <div class="card">
+                    <h3>Maria Oliveira</h3>
+                    <span class="badge">Apoio Escolar / Reforço</span>
+                    <p>Aulas gratuitas de matemática e português para crianças do ensino fundamental.</p>
+                    <small>📍 São Paulo (SP)</small>
+                    <button class="btn-sm btn-ajudar" style="margin-top: 12px;">Entrar em Contato</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userStr = localStorage.getItem('user');
+            const navLinks = document.getElementById('nav-links');
+            const navActions = document.getElementById('nav-actions');
+
+            if (userStr && navLinks && navActions) {
+                const user = JSON.parse(userStr);
+                
+                if (!document.getElementById('link-perfil-nav')) {
+                    const perfilLink = document.createElement('a');
+                    perfilLink.id = 'link-perfil-nav';
+                    perfilLink.href = '/perfil';
+                    perfilLink.textContent = 'Meu Perfil';
+                    navLinks.appendChild(perfilLink);
+                }
+
+                navActions.innerHTML = `
+                    <span style="font-weight: 600; margin-right: 10px; color: #1e293b;">Olá, ${user.nome || 'Usuário'}</span>
+                    <button id="btn-logout-prestadores" class="btn-secondary" style="padding: 8px 16px;">Sair</button>
+                `;
+
+                document.getElementById('btn-logout-prestadores').addEventListener('click', () => {
+                    localStorage.removeItem('user');
+                    window.location.href = '/';
+                });
+            } else if (navActions) {
+                navActions.innerHTML = `<a href="/" class="btn-primary" style="padding: 8px 16px; text-decoration: none; border-radius: 6px;">Fazer Login</a>`;
+            }
+
+            const map = L.map('map').setView([-23.5505, -46.6333], 13);
+
+            L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 19,
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+            }).addTo(map);
+
+            L.marker([-23.5505, -46.6333]).addTo(map)
+                .bindPopup('<b>João Silva</b><br>Eletricista Voluntário (Centro)')
+                .openPopup();
+
+            L.marker([-23.5605, -46.6533]).addTo(map)
+                .bindPopup('<b>Maria Oliveira</b><br>Apoio Escolar (Paulista)');
+        });
+    </script>
+</body>
+</html>

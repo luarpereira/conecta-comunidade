@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecta Comunidade 🤝</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            <h2>Conecta Comunidade 🤝</h2>
+        </div>
+        <nav class="nav-links" id="nav-links">
+            <a href="/" class="active">História</a>
+            <a href="/mural">Mural de Ajudas</a>
+            <a href="/prestadores">Mapa de Prestadores</a>
+        </nav>
+        <div class="nav-actions" id="nav-actions">
+            <button id="open-login-modal" class="btn-primary">Entrar / Cadastro</button>
+        </div>
+    </header>
+
+    <!-- SEÇÃO HERO -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <span class="badge-tag">🤝 Plataforma Comunitária de São Paulo</span>
+            <h1 class="hero-title">Conectando quem precisa de apoio a quem pode ajudar</h1>
+            <p class="hero-subtitle">
+                A primeira rede colaborativa de apoio mútuo, prestação de serviços voluntários e troca de recursos entre vizinhos.
+            </p>
+            <div class="hero-buttons">
+                <a href="/mural" class="btn-hero-primary">Explorar Mural de Ajudas</a>
+                <a href="/prestadores" class="btn-hero-secondary">Ver Prestadores Próximos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARDS -->
+    <main class="container">
+        <div class="grid-cards">
+            <div class="card card-blue">
+                <div class="card-icon">📋</div>
+                <h3>Mural de Ajudas</h3>
+                <p>Publique pedidos de doações, apoio temporário ou auxílio comunitário de forma simples e rápida.</p>
+            </div>
+            <div class="card card-green">
+                <div class="card-icon">🗺️</div>
+                <h3>Prestadores Próximos</h3>
+                <p>Encontre profissionais locais e prestadores voluntários mapeados perto do seu bairro.</p>
+            </div>
+            <div class="card card-purple">
+                <div class="card-icon">👤</div>
+                <h3>Perfil Comunitário</h3>
+                <p>Acompanhe seu histórico de colaborações e mantenha seus dados de contato sempre atualizados.</p>
+            </div>
+        </div>
+
+        <div class="card card-about">
+            <h3>Nossa História & Missão</h3>
+            <p>O <strong>Conecta Comunidade</strong> nasceu com o objetivo de estreitar laços locais, facilitando o apoio mútuo, a prestação de serviços voluntários e a troca de recursos entre os moradores da região de São Paulo.</p>
+        </div>
+    </main>
+
+    <!-- MODAL DE AUTENTICAÇÃO -->
+    <div id="modal-auth" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="display: flex; gap: 8px;">
+                    <button id="tab-login-btn" class="btn-secondary" style="background: #2563eb; color: white; border: none; padding: 6px 14px; font-size: 0.85rem; cursor: pointer;">Entrar</button>
+                    <button id="tab-cadastro-btn" class="btn-secondary" style="background: #f1f5f9; color: #0f172a; border: 1px solid #cbd5e1; padding: 6px 14px; font-size: 0.85rem; cursor: pointer;">Cadastre-se</button>
+                </div>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+
+            <!-- FORMULÁRIO DE LOGIN -->
+            <form id="form-login">
+                <h3 style="margin-bottom: 16px; font-size: 1.15rem; color: #0f172a;">Acessar sua Conta</h3>
+                <div class="form-group">
+                    <label for="login-email">E-mail</label>
+                    <input type="email" id="login-email" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Entrar</button>
+            </form>
+
+            <!-- FORMULÁRIO DE CADASTRO -->
+            <form id="form-cadastro" class="hidden">
+                <h3 style="margin-bottom: 16px; font-size: 1.15rem; color: #0f172a;">Criar Nova Conta</h3>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label>Nome Completo</label>
+                    <input type="text" id="cad-nome" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label>E-mail</label>
+                    <input type="email" id="cad-email" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label>Senha</label>
+                    <input type="password" id="cad-senha" required>
+                </div>
+                <!-- NOVO CAMPO: Tipo de Usuário inserido mantendo o design original -->
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label>Tipo de Usuário</label>
+                    <select id="cad-tipo" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px;" required>
+                        <option value="morador">Morador / Beneficiário</option>
+                        <option value="prestador">Prestador de Serviços</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                        <label>Cidade</label>
+                        <input type="text" id="cad-cidade" value="São Paulo">
+                    </div>
+                    <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                        <label>Estado</label>
+                        <input type="text" id="cad-estado" value="SP">
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Concluir Cadastro</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script original integrado com o envio do novo campo 'tipo' -->
+    <script>
+        // Lógica de abertura/fecho do modal e alternância de abas (caso esteja no script.js externo ou aqui)
+        const modal = document.getElementById('modal-auth');
+        const openModalBtn = document.getElementById('open-login-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const loginBtn = document.getElementById('tab-login-btn');
+        const cadastroBtn = document.getElementById('tab-cadastro-btn');
+        const formLogin = document.getElementById('form-login');
+        const formCadastro = document.getElementById('form-cadastro');
+
+        if(openModalBtn) openModalBtn.onclick = () => modal.classList.remove('hidden');
+        if(closeModalBtn) closeModalBtn.onclick = () => modal.classList.add('hidden');
+
+        if(loginBtn && cadastroBtn) {
+            loginBtn.onclick = () => {
+                formLogin.classList.remove('hidden');
+                formCadastro.classList.add('hidden');
+                loginBtn.style.background = '#2563eb';
+                loginBtn.style.color = 'white';
+                cadastroBtn.style.background = '#f1f5f9';
+                cadastroBtn.style.color = '#0f172a';
+            };
+            cadastroBtn.onclick = () => {
+                formCadastro.classList.remove('hidden');
+                formLogin.classList.add('hidden');
+                cadastroBtn.style.background = '#2563eb';
+                cadastroBtn.style.color = 'white';
+                loginBtn.style.background = '#f1f5f9';
+                loginBtn.style.color = '#0f172a';
+            };
+        }
+
+        // Submissão do Cadastro
+        document.getElementById('form-cadastro').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const nome = document.getElementById('cad-nome').value;
+            const email = document.getElementById('cad-email').value;
+            const senha = document.getElementById('cad-senha').value;
+            const tipo = document.getElementById('cad-tipo').value;
+            const cidade = document.getElementById('cad-cidade').value;
+            const estado = document.getElementById('cad-estado').value;
+
+            try {
+                const response = await fetch('/api/cadastro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, email, senha, tipo, cidade, estado })
+                });
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alert('Cadastro realizado com sucesso!');
+                    localStorage.setItem('usuario', JSON.stringify(result.user));
+                    window.location.href = '/perfil';
+                } else {
+                    alert('Erro no cadastro: ' + (result.error || 'Erro desconhecido'));
+                }
+            } catch (err) {
+                console.error('Erro:', err);
+                alert('Erro de conexão com o servidor.');
+            }
+        });
+
+        // Submissão do Login
+        document.getElementById('form-login').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert('Login efetuado com sucesso!');
+                    localStorage.setItem('usuario', JSON.stringify(result.user));
+                    window.location.href = '/perfil';
+                } else {
+                    alert('Erro no login: ' + (result.error || 'Credenciais inválidas'));
+                }
+            } catch (err) {
+                console.error('Erro:', err);
+                alert('Erro de conexão com o servidor.');
+            }
+        });
+    </script>
+</body>
+</html>

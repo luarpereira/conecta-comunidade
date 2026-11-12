@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mural de Ajudas - Conecta Comunidade</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <h2>Conecta Comunidade 🤝</h2>
+        </div>
+        <nav class="nav-links">
+            <a href="/">História</a>
+            <a href="/mural" class="active">Mural de Ajudas</a>
+            <a href="/prestadores">Mapa de Prestadores</a>
+        </nav>
+        <div class="nav-actions">
+            <a href="/perfil" class="btn-secondary">Meu Perfil</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Parte Superior: Formulário de Publicação -->
+        <section class="section bg-light form-section-wrapper">
+            <h2>Publicar um Pedido de Ajuda</h2>
+            <p class="subtitle">Precisa de auxílio ou conhece alguém que precisa? Preencha os detalhes para publicar no mural abaixo.</p>
+            <form id="form-pedido" class="form-card">
+                <div class="form-group">
+                    <label>Título do Pedido</label>
+                    <input type="text" id="pedido-titulo" placeholder="Ex: Doação de roupas infantis" required>
+                </div>
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select id="pedido-categoria">
+                        <option value="Alimentação">Alimentação</option>
+                        <option value="Serviço Voluntário">Serviço Voluntário</option>
+                        <option value="Doação de Itens">Doação de Itens</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Descrição do Pedido</label>
+                    <textarea id="pedido-descricao" rows="3" placeholder="Descreva o que é necessário..." required></textarea>
+                </div>
+                <button type="submit" class="btn-primary full-width">Publicar Pedido</button>
+            </form>
+        </section>
+
+        <!-- Parte Inferior: Mural de Pedidos -->
+        <section class="section">
+            <h2>Mural de Pedidos Ativos</h2>
+            <p class="subtitle">Acompanhe e responda aos pedidos de apoio na comunidade.</p>
+            <div class="mural-grid" id="mural-pedidos">
+                <div class="card card-pedido">
+                    <span class="badge badge-alimento">Alimentação</span>
+                    <h3>Doação de Cesta Básica</h3>
+                    <p>Família no bairro precisa de apoio temporário com mantimentos essenciais.</p>
+                    <small>📍 Bairro Central • Postado há 2 horas</small>
+                    <button class="btn-sm btn-ajudar">Quero Ajudar</button>
+                </div>
+                <div class="card card-pedido">
+                    <span class="badge badge-servico">Serviço Voluntário</span>
+                    <h3>Conserto de Instalação Elétrica</h3>
+                    <p>Procura-se eletricista voluntário para reparar fiação de abrigo local.</p>
+                    <small>📍 Vila Nova • Postado há 5 horas</small>
+                    <button class="btn-sm btn-ajudar">Quero Ajudar</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
